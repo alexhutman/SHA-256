@@ -14,7 +14,7 @@ if py3:
     msg = input('Enter a message. The SHA256 digest will be returned: ')
 else:
     msg = raw_input('Enter a message. The SHA256 digest will be returned: ')
-print "Computing SHA256 hash of " + "\"" + msg + "\"..."
+print("Computing SHA256 hash of " + "\"" + msg + "\"...")
 #-------------------------------------------- END Input message from user --------------------------------------------#
 
 
@@ -65,7 +65,7 @@ def Maj(x,y,z): #Maj function
 def padMsg(message):                                                #Pads message to be a multiple of 512 bits. The first "length" bits are the message, followed by "k" zeroes, followed by a 1 bit, followed by 64 bits containing "length" in binary
     length = len(message)*8                                         #8 bits/ASCII character
     k = (447 - length) % 512                                        #k is residue of solution to: length + 1 + k (congruent to) 448 mod 512
-    binMsg = int(binascii.hexlify(message), 16)                     #Convert message to binary number
+    binMsg = int(binascii.hexlify(message.encode('utf-8')),16)      #Convert message to binary number
     binMsg = (binMsg << 1) + 1                                      #Append 1 to binary representation of message
     binMsg = bin((binMsg << (k+64)) ^ length)[2:]                   #Shift add k+64 zeroes to the right, add length to the very end
     leftPad = 512*int(math.ceil(len(binMsg)/512.0))
@@ -137,10 +137,10 @@ time0 = int(round(time.time() * 1000))
 msgHash = hash(msg)
 time1 = int(round(time.time() * 1000))
 deltaTime = time1-time0
-trueHash = hashlib.sha256(msg).hexdigest()
+trueHash = hashlib.sha256(msg.encode('utf-8')).hexdigest()
 
-print "Got:         ", msgHash
-print "True answer: ", trueHash
-print "Are they equal?", "Yes" if msgHash == trueHash else "Oh dear."
-print "This took", deltaTime, "ms"
+print("Got:         ", msgHash)
+print("True answer: ", trueHash)
+print("Are they equal?", "Yes" if msgHash == trueHash else "Oh dear.")
+print("This took", deltaTime, "ms")
 #-------------------------------------------- END Print Result --------------------------------------------#
