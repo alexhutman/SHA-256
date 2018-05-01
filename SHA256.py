@@ -136,11 +136,17 @@ def hash(msg):                                                      #Performs th
 time0 = int(round(time.time() * 1000))
 msgHash = hash(msg)
 time1 = int(round(time.time() * 1000))
-deltaTime = time1-time0
+deltaTime = int(time1-time0)
 trueHash = hashlib.sha256(msg.encode('utf-8')).hexdigest()
 
-print("Got:         ", msgHash)
-print("True answer: ", trueHash)
-print("Are they equal?", "Yes" if msgHash == trueHash else "Oh dear.")
-print("This took", deltaTime, "ms")
+if py3:
+    print("Got:         ", msgHash)
+    print("True answer: ", trueHash)
+    print("Are they equal?", "Yes" if msgHash == trueHash else "Oh dear.")
+    print("This took", deltaTime, "ms")
+else:
+    print "Got:         ", msgHash
+    print "True answer: ", trueHash
+    print "Are they equal?", "Yes" if msgHash == trueHash else "Oh dear."
+    print "This took", deltaTime, "ms"
 #-------------------------------------------- END Print Result --------------------------------------------#
