@@ -2,6 +2,7 @@
 #SHA256
 #Used https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf for reference
 
+from __future__ import print_function
 from sys import version_info
 import math
 import binascii
@@ -139,14 +140,8 @@ time1 = int(round(time.time() * 1000))
 deltaTime = int(time1-time0)
 trueHash = hashlib.sha256(msg.encode('utf-8')).hexdigest()
 
-if py3:
-    print("Got:         ", msgHash)
-    print("True answer: ", trueHash)
-    print("Are they equal?", "Yes" if msgHash == trueHash else "Oh dear.")
-    print("This took", deltaTime, "ms")
-else:
-    print "Got:         ", msgHash
-    print "True answer: ", trueHash
-    print "Are they equal?", "Yes" if msgHash == trueHash else "Oh dear."
-    print "This took", deltaTime, "ms"
+print("Got:         ", msgHash)
+print("True answer: ", trueHash)
+print("Are they equal?", "Yes" if msgHash == trueHash else "Oh dear.")
+print("This took", deltaTime, "ms")
 #-------------------------------------------- END Print Result --------------------------------------------#
